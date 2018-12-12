@@ -1,0 +1,15 @@
+function [U, D] = findU(D, ro, roc)
+% ??????? ?????????? ????????? U(ro) ? ????????? D/U
+U = [];
+I = [];
+r_ro_roc = distance(ro, roc);
+for i = 1:size(D, 1)
+ r_ro_i = distance(ro, D(i, :));
+ r_roc_i = distance(roc, D(i, :));
+ if (r_ro_i < r_roc_i) && (r_ro_i <= r_ro_roc)
+ U = [U; D(i, :)];
+ I = [I i];
+ end
+end
+D(I, :) = [];
+end
